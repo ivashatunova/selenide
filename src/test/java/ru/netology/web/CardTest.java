@@ -31,7 +31,20 @@ public class CardTest {
         $("[data-test-id='agreement'] .checkbox__box").click();
         $("button .button__text").click();
         $x("//div[contains(text(), 'Успешно')]").shouldBe(Condition.visible, Duration.ofSeconds(15));
-
-
     }
+
+    @Test
+    void shouldSendWhenСhooseСity() {
+        Configuration.holdBrowserOpen = true;
+        open("http://localhost:9999");
+        $("[data-test-id='city'] .input__control").setValue("Ка");
+        $x("//span[contains(text(), 'Казань')]").click();
+        $("[data-test-id='date'] .input__control").setValue(data);
+        $("[data-test-id='name'] .input__control").setValue("Шатунова Иванна");
+        $("[data-test-id='phone'] .input__control").setValue("+79168580321");
+        $("[data-test-id='agreement'] .checkbox__box").click();
+        $("button .button__text").click();
+        $x("//div[contains(text(), 'Успешно')]").shouldBe(Condition.visible, Duration.ofSeconds(15));
+    }
+
 }
