@@ -23,6 +23,17 @@ public class CardTest {
                 .format(DateTimeFormatter.ofPattern(pattern));
     }
 
+    private Keys getControl () {
+        String os = System.getProperty("os.name");
+
+        if (os.contains("Mac")){
+            return Keys.COMMAND;
+        }else{
+           return Keys.CONTROL;
+        }
+    }
+
+
     @BeforeEach
     void setUp() {
         Configuration.holdBrowserOpen = true;
@@ -34,7 +45,7 @@ public class CardTest {
     void shouldSendForm() {
         $("[data-test-id='city'] .input__control").setValue("Казань");
         $("[data-test-id='date'] .input__control").click();
-        $("[data-test-id='date'] .input__control").sendKeys(Keys.COMMAND, "a");
+        $("[data-test-id='date'] .input__control").sendKeys(getControl(), "a");
         $("[data-test-id='date'] .input__control").sendKeys(Keys.BACK_SPACE);
         $("[data-test-id='date'] .input__control").setValue(getData(4, datePattern));
         $("[data-test-id='name'] .input__control").setValue("Шатунова Иванна");
@@ -49,7 +60,7 @@ public class CardTest {
         $("[data-test-id='city'] .input__control").setValue("Ка");
         $x("//span[contains(text(), 'Казань')]").click();
         $("[data-test-id='date'] .input__control").click();
-        $("[data-test-id='date'] .input__control").sendKeys(Keys.COMMAND, "a");
+        $("[data-test-id='date'] .input__control").sendKeys(getControl(), "a");
         $("[data-test-id='date'] .input__control").sendKeys(Keys.BACK_SPACE);
         $("[data-test-id='date'] .input__control").setValue(getData(4, datePattern));
         $("[data-test-id='name'] .input__control").setValue("Шатунова Иванна");
@@ -58,6 +69,7 @@ public class CardTest {
         $("button .button__text").click();
         $x("//div[contains(text(), 'Успешно')]").shouldBe(Condition.visible, Duration.ofSeconds(15));
     }
+
 
     @Test
     void shouldSendWhenСhooseDate() {
