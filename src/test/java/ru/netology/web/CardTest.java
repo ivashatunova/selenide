@@ -36,10 +36,6 @@ public class CardTest {
         $("[data-test-id='date'] .input__control").click();
         $("[data-test-id='date'] .input__control").sendKeys(Keys.COMMAND, "a");
         $("[data-test-id='date'] .input__control").sendKeys(Keys.BACK_SPACE);
-
-//        for (int i = 0; i < 10; i++) {
-//            $("[data-test-id='date'] .input__control").sendKeys(Keys.BACK_SPACE);
-//        }
         $("[data-test-id='date'] .input__control").setValue(getData(4, datePattern));
         $("[data-test-id='name'] .input__control").setValue("Шатунова Иванна");
         $("[data-test-id='phone'] .input__control").setValue("+79168580321");
@@ -53,9 +49,8 @@ public class CardTest {
         $("[data-test-id='city'] .input__control").setValue("Ка");
         $x("//span[contains(text(), 'Казань')]").click();
         $("[data-test-id='date'] .input__control").click();
-        for (int i = 0; i < 10; i++) {
-            $("[data-test-id='date'] .input__control").sendKeys(Keys.BACK_SPACE);
-        }
+        $("[data-test-id='date'] .input__control").sendKeys(Keys.COMMAND, "a");
+        $("[data-test-id='date'] .input__control").sendKeys(Keys.BACK_SPACE);
         $("[data-test-id='date'] .input__control").setValue(getData(4, datePattern));
         $("[data-test-id='name'] .input__control").setValue("Шатунова Иванна");
         $("[data-test-id='phone'] .input__control").setValue("+79168580321");
